@@ -1,5 +1,4 @@
 import "dotenv/config";
-import { } from "path";
 import multer from "multer";
 import { v2 } from "cloudinary";
 import { RequestHandler } from "express";
@@ -30,7 +29,7 @@ export const uploadHandler = (fieldName: string, isOptional: boolean = false): R
       if (request.file) {
         const fileExtension = request.file.originalname.split('.').pop();
 
-        request.body.image = `/media/${request.file.filename}.${fileExtension}`;
+        request.body.image = `http://localhost:${process.env.PORT || 3000}/media/${request.file.filename}.${fileExtension}`;
         next();
       }
     });
